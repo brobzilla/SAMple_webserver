@@ -1,0 +1,47 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<script>
+  function sendLightData(input_data) {
+      $.ajax({
+        type: 'POST',
+        url: '/light',
+        data: JSON.stringify({"light":input_data}),
+        contentType: 'application/json',
+        dataType: 'text',
+        error: function(data, textStatus, jqxhr){ OnError(input_data, textStatus)},
+        success: function(data, textStatus, jqxhr){ OnSuccess(input_data, textStatus)}
+      });
+    }
+
+   function OnSuccess(input_data, textStatus)
+   {
+       console.log(textStatus);
+       console.log("Successful post for light " + input_data)
+       var status = document.getElementById('status_panel');
+       status.innerHTML = "Successful post for light " + input_data
+
+   };
+
+   function OnError(input_data, textStatus)
+   {
+       console.log(textStatus);
+       console.log("Failed to post for light " + input_data)
+       var status = document.getElementById('status_panel');
+       status.innerHTML = "Failed to post for light " + input_data
+   };
+
+
+
+</script>
+
+<button type="button" onclick="sendLightData(1)">Light 1</button>
+<button type="button" onclick="sendLightData(2)">Light 2</button>
+<button type="button" onclick="sendLightData(3)">Light 3</button>
+
+<div>
+    <div id="status_panel"> </div>
+</div>
+
+</body>
