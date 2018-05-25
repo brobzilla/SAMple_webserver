@@ -17,7 +17,6 @@
 
    function OnSuccess(input_data, textStatus)
    {
-       console.log(textStatus);
        console.log("Successful post for light " + input_data)
        var status = document.getElementById('status_panel');
        status.innerHTML = "Successful post for light " + input_data
@@ -26,13 +25,10 @@
 
    function OnError(input_data, textStatus)
    {
-       console.log(textStatus);
        console.log("Failed to post for light " + input_data)
        var status = document.getElementById('status_panel');
        status.innerHTML = "Failed to post for light " + input_data
    };
-
-
 
 </script>
 
