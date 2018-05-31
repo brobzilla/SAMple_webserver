@@ -6,7 +6,7 @@ from random import randint
 from time import sleep
 
 
-PORT = 8001
+PORT = 8000
 
 class SAMHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
@@ -69,6 +69,9 @@ class SAMHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         sleep(0.5)
         GPIO.output(number, False)
         pwm.ChangeDutyCycle(0)
+        sleep(pause)
+        print "The pause was"
+        print  pause
     
 
 # Run this all everytime.
