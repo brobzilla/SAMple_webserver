@@ -3,19 +3,19 @@
 </head>
 <body>
 <script>
-  function sendLightData(input_data) {
+  function sendData(type, light, status) {
       $.ajax({
         type: 'POST',
         url: '/light',
-        data: JSON.stringify({"light":input_data}),
+        data: JSON.stringify({"type", type, "light":light, "status":status}),
         contentType: 'application/json',
         dataType: 'text',
-        error: function(data, textStatus, jqxhr){ OnError(input_data, textStatus)},
-        success: function(data, textStatus, jqxhr){ OnSuccess(input_data, textStatus)}
+        error: function(data, textStatus, jqxhr){ OnError(light, status, textStatus)},
+        success: function(data, textStatus, jqxhr){ OnSuccess(light, status, textStatus)}
       });
     }
 
-   function OnSuccess(input_data, textStatus)
+   function OnSuccess(input_data, status, textStatus)
    {
        console.log("Successful post for light " + input_data)
        var status = document.getElementById('status_panel');
@@ -23,7 +23,7 @@
 
    };
 
-   function OnError(input_data, textStatus)
+   function OnError(input_data, status,  textStatus)
    {
        console.log("Failed to post for light " + input_data)
        var status = document.getElementById('status_panel');
@@ -32,9 +32,11 @@
 
 </script>
 
-<button type="button" onclick="sendLightData(1)">Light 1</button>
-<button type="button" onclick="sendLightData(2)">Light 2</button>
-<button type="button" onclick="sendLightData(3)">Light 3</button>
+<button type="button" onclick="sendData('light', 'day', 'on')">Day Lights On</button>
+<button type="button" onclick="sendData('light', 'day', 'off')">Day Lights Off</button>
+<button type="button" onclick="sendData('light', 'night', 'on')">Night Light On</button>
+<button type="button" onclick="sendData('light', 'night', 'off')">Night Lights Off</button>
+<button type="button" onclick="sendData('servo', 0, 0)">Feed </button>
 
 <div>
     <div id="status_panel"> </div>
