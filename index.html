@@ -7,7 +7,7 @@
       $.ajax({
         type: 'POST',
         url: '/light',
-        data: JSON.stringify({"type", type, "light":light, "status":status}),
+        data: JSON.stringify({"type":type, "light":light, "status":status}),
         contentType: 'application/json',
         dataType: 'text',
         error: function(data, textStatus, jqxhr){ OnError(light, status, textStatus)},

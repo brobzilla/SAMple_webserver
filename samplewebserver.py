@@ -6,7 +6,7 @@ from random import randint
 from time import sleep
 
 
-PORT = 8000
+PORT = 8001
 
 class SAMHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
@@ -24,7 +24,7 @@ class SAMHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.feedMe()
 
     def toggle_light(self, light_type, light_status):
-        print(("Turning on light number {}".format(light_number)))
+        print(("Turning {}  {} light".format(light_status, light_type)))
         if light_type == "day":
             if light_status == "on":
                 self.toggleOn(31)
