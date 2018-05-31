@@ -22,6 +22,9 @@ class SAMHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.toggle_light(data["light"], data["status"])
         elif data["type"] == "servo":
             self.feedMe()
+        elif data["type"] == "reset":
+            #Make the call to reset here.
+            print("Call reset method here")
 
     def toggle_light(self, light_type, light_status):
         print(("Turning {}  {} light".format(light_status, light_type)))
@@ -35,7 +38,7 @@ class SAMHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                 self.toggleOn(29)
             elif light_status == "off":
                 self.toggleOff(29)
- 
+
     def toggleOn(self, gpio_pin_number):
         GPIO.setup(gpio_pin_number, GPIO.OUT)
 
@@ -47,7 +50,7 @@ class SAMHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
         print ("Turn Relay OFF")
         GPIO.output(gpio_pin_number, GPIO.HIGH)
-    
+
     def feedMe(self):
         self.servo(0, 3)
         self.servo(0, 11)
